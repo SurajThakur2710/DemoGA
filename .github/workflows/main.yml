@@ -10,32 +10,45 @@ jobs:
     name: Generate Numbers
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9  # Change this to your desired Python version
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
-      run: pip install -r hello.txt  # If you have any dependencies, add them to requirements.txt
+      run: pip install -r hello.txt  
 
     - name: Run Python Script
-      run: python demo.py 
+      run: python demo.py  # Replace this with your Python script filename
 
   additional_job:
     name: Additional Job
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8, 3.9]
+
     env:
-      ENV_VARIABLE: "hello"  # Define environment variables for this job
+      ENV_VARIABLE: "hello"  
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
     - name: Print Environment Variable
-      run: echo $ENV_VARIABLE  
+      run: echo $ENV_VARIABLE 
