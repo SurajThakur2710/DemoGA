@@ -1,0 +1,54 @@
+name: Generate Random Numbers
+
+on:
+  push:
+    branches:
+      - main  # Change this to match your main branch name
+
+jobs:
+  generate_numbers_job:
+    name: Generate Numbers
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: pip install -r hello.txt  
+
+    - name: Run Python Script
+      run: python demo.py  # Replace this with your Python script filename
+
+  additional_job:
+    name: Additional Job
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+
+    env:
+      ENV_VARIABLE: "hello"  
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+   
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Print Environment Variable
+      run: echo $ENV_VARIABLE 
