@@ -10,21 +10,18 @@ jobs:
     name: Generate Numbers
     runs-on: self-hosted
 
-    strategy:
-      matrix:
-        python-version: [3.7, 3.8, 3.9]
+
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+    # - name: Set up Python 
+    #   uses: actions/setup-python@v2
+     
 
-    - name: Install dependencies
-      run: pip install -r hello.txt  
+    # - name: Install dependencies
+    #   run: pip install -r hello.txt  
 
     - name: Run Python Script
       run: python demo.py  # Replace this with your Python script filename
@@ -33,9 +30,7 @@ jobs:
     name: Additional Job
     runs-on: self-hosted
 
-    strategy:
-      matrix:
-        python-version: [3.7, 3.8, 3.9]
+   
 
     env:
       ENV_VARIABLE: "hello"  
@@ -45,10 +40,9 @@ jobs:
       uses: actions/checkout@v2
 
    
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+    # - name: Set up Python 
+    #   uses: actions/setup-python@v2
+     
 
     - name: Print Environment Variable
       run: echo $ENV_VARIABLE 
