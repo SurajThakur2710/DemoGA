@@ -46,3 +46,21 @@ jobs:
 
     - name: Print Environment Variable
       run: echo $ENV_VARIABLE 
+
+  secret_job:
+    needs: additional_job 
+    runs-on: self-hosted
+    if: ${{always()}}
+   
+
+    env:
+      secret: ${{secrets.Password}}  
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+     
+
+    - name: Print secret
+      run: echo $secret 
