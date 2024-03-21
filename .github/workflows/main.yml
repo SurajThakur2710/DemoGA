@@ -24,7 +24,7 @@ jobs:
     #   run: pip install -r hello.txt  
 
     - name: Run Python Script
-      run: python demo.py  # Replace this with your Python script filename
+      run: python demo.py 
 
   additional_job:
     name: Additional Job
@@ -45,7 +45,7 @@ jobs:
      
 
     - name: Print Environment Variable
-      run: echo $ENV_VARIABLE 
+      run: echo "$ENV_VARIABLE" 
 
   secret_job:
     needs: additional_job 
@@ -63,4 +63,4 @@ jobs:
      
 
     - name: Print secret
-      run: echo $secret 
+      run: echo "$secret" 
